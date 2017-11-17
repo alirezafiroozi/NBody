@@ -22,6 +22,7 @@ Planet::Planet(float xPos, float yPos, float xVel, float yVel, float mass,
     planet.setRadius(_radius);
     planet.setFillColor(_col);
     planet.setPosition(sf::Vector2f(_pos.x, _pos.y));
+    planet.setOrigin(sf::Vector2f(_radius, _radius));
 }
 
 void Planet::Step()
@@ -55,7 +56,7 @@ sf::Vector2f Planet::Force(const Planet &other) const
         temp.y = 0;
         return temp;
     }
-    double force_temp = (G *  _mass * other._mass)/pow(d,2);
+    double force_temp = (/*G */  _mass * other._mass)/pow(d,2);
     //    double force_temp = Force(other);
     temp.x = force_temp * (_pos.x - other._pos.x) * -1
             / d;
@@ -71,6 +72,7 @@ Planet Planet::Speed()
     //change the value of _spd._x and _spd._y of the object
     _vel.x = (_vel.x + (_acc.x)) /* * t */;
     _vel.y = (_vel.y + (_acc.y)) /* * t */;
+    return *this;
     //    cout << "speed func: _x: " << _spd._x << endl;
     //    cout << "speed func: _y: " << _spd._y << endl;
 }

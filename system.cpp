@@ -21,8 +21,15 @@ void System::Draw(sf::RenderWindow &window)
     int size = planetVector.size();
     for(int i = 0; i < size; i++)
     {
-        it[i].Step();
-        it[i].Draw(window);        
+        for(int n = 0; n < size; n++)
+        {
+            it[n].Acceleration(it[n].Force(it[i]));
+            it[n].Speed();
+            it[n].Step();
+            it[n].Draw(window);
+        }
+//        it[i].Draw(window);
+
     }
 }
 
