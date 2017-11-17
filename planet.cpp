@@ -19,6 +19,7 @@ Planet::Planet(float xPos, float yPos, float xVel, float yVel, float mass,
     _mass = mass;
     _radius = radius;
     _col = col;
+    planet.setRadius(_radius);
 }
 
 void Planet::Step()
