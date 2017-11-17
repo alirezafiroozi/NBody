@@ -19,9 +19,9 @@ public:
     void Collision(Planet& other);
 
     /********** Do we need BIG3???? *****/
-    Planet(Planet& other);
-    Planet operator =(Planet& other);
-    ~Planet();
+//    Planet(Planet& other);
+//    Planet operator =(Planet& other);
+//    ~Planet();
 
 
 private:

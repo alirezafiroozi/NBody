@@ -33,9 +33,9 @@ void Animate::Run()
     cout << "============Animate Main Loop Started============\n";
     while(window.isOpen())
     {
-        processEvents();
-        update();
-        render(); //clear/draw/display
+        ProcessEvents();
+        Update();
+        Render(); //clear/draw/display
     }
     cout << "============Animate Main Loop END!============\n";
 }
@@ -52,7 +52,7 @@ void Animate::ProcessEvents()
         case sf::Event::MouseLeft:
             mouseIn = false;break;
         case sf::Event::MouseMoved:
-            mousepoint.getPosition();
+            mousePoint.getPosition();
             //            cout << mousepoint.getPosition().x << ", "
             //                 << mousepoint.getPosition().y << endl;break;
             break;
@@ -76,8 +76,8 @@ void Animate::ProcessEvents()
         case sf::Event::MouseButtonPressed:{
             //actual mouse coords based on resolution
             sf::Vector2i mouse_coord = sf::Mouse::getPosition();
-            cout << "MP.X:" << mousepoint.getPosition().x << ", "
-                 << "MP.Y:" << mousepoint.getPosition().y << endl;
+            cout << "MP.X:" << mousePoint.getPosition().x << ", "
+                 << "MP.Y:" << mousePoint.getPosition().y << endl;
 
             //real world coords based on perspective (after zoom)
             sf::Vector2f world_coord = window.mapPixelToCoords(mouse_coord);
@@ -103,7 +103,7 @@ void Animate::ProcessEvents()
 
 void Animate::Update()
 {
-    _command = 0;
+//    _command = 0;
     if (mouseIn){
         //mousePoint red dot:
         mousePoint.setPosition(sf::Mouse::getPosition(window).x-5,
@@ -111,7 +111,7 @@ void Animate::Update()
     }
 }
 
-void Animate::render()
+void Animate::Render()
 {
     window.clear();
     Draw();
