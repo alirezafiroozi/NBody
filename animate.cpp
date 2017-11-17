@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 Animate::Animate()
 {
     cout << "============Animate CTOR got called============\n";
@@ -14,6 +13,10 @@ Animate::Animate()
     system = System();
     planet = Planet();
     window.setFramerateLimit(FRAME_RATE);
+
+    //creates view perspective
+    view = sf::View(window.getDefaultView());
+    window.setView(view);
 
     //Creates mouse point
     mouseIn = true;
@@ -62,22 +65,34 @@ void Animate::ProcessEvents()
                 pause = !pause;break;
             case sf::Keyboard::Escape:
                 window.close();break;
+            case sf::Keyboard::A:
+                view.zoom(0.5);
+                window.setView(view);break;
+            case sf::Keyboard::S:
+                view.zoom(2.0);
+                window.setView(view);break;
             }
-        case sf::Event::MouseButtonPressed:
-            double timer = 0;
-            while(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-                //calculate the time it was held down, and increment the size of the
-                //particle that is created
-                // timer += 0.01;
-                //                cout << "Debug:timer:" << timer << endl;
+            break;
+        case sf::Event::MouseButtonPressed:{
+            //actual mouse coords based on resolution
+            sf::Vector2i mouse_coord = sf::Mouse::getPosition();
+            cout << "MP.X:" << mousepoint.getPosition().x << ", "
+                 << "MP.Y:" << mousepoint.getPosition().y << endl;
 
-                if(timer >= CAP){
-                    std::exit(1);
+            //real world coords based on perspective (after zoom)
+            sf::Vector2f world_coord = window.mapPixelToCoords(mouse_coord);
+            cout << "WC.X:" << world_coord.x << ", "
+                 << "WC.Y:" << world_coord.y << endl;
+
+            while(sf::Event::MouseButtonPressed){
+                if(sf::Event::MouseButtonReleased){
+                    //this will calculate the new position of the cursor
+                    //will use this to calculate where the new
+                    sf::Vector2i new_coords = sf::Mouse::getPosition();
+                    cout << "DEBUG::newcoords:" << new_coords.x << "," << new_coords.y << endl;
                 }
-            }//test - yet to try
-
-            cout << mousepoint.getPosition().x << ", "
-                 << mousepoint.getPosition().y << endl;break;
+            }
+        }
 
             //then create a new particle based on size
             //planet.new(timer);

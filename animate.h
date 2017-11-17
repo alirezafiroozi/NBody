@@ -17,6 +17,7 @@ public:
 private:
     sf::RenderWindow window;
     sf::CircleShape mousePoint;
+    sf::View view;
     System system;
     Planet planet;
     int _commant;
