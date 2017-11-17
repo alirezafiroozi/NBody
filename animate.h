@@ -23,6 +23,7 @@ private:
     int _commant;
     bool mouseIn;
     bool pause;
+    sf::CircleShape s;
 };
 
 std::string mouse_pos_string(sf::RenderWindow& window);

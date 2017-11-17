@@ -84,6 +84,9 @@ void Animate::ProcessEvents()
             cout << "WC.X:" << world_coord.x << ", "
                  << "WC.Y:" << world_coord.y << endl;
 
+            s.setRadius(40);
+            s.setPosition(world_coord);
+            s.setFillColor(sf::Color::Blue);
             while(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
                 if(sf::Event::MouseButtonReleased){
                     //this will calculate the new position of the cursor
@@ -93,6 +96,8 @@ void Animate::ProcessEvents()
                 }
             }
         }
+
+
 
             //then create a new particle based on size
             //planet.new(timer);
@@ -122,9 +127,15 @@ void Animate::Draw()
 {
     system.Draw(window);
 
-    if(mouseIn)
+    if(mouseIn){
         window.draw(mousePoint);
+    }
 
+                window.draw(s);
+
+
+//    Planet p(300,500,5,-3,50,20,sf::Color::Red);
+//    p.Draw(window);
 }
 
 string mouse_pos_string(sf::RenderWindow& window)

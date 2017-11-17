@@ -11,9 +11,9 @@ void test();
 int main(int argc, char *argv[])
 {
     cout << "Hello World!" << endl;
-//    Animate animate;
-//    animate.Run();
-    test();
+    Animate animate;
+    animate.Run();
+//    test();
     return 0;
 }
 
@@ -38,8 +38,8 @@ void test()
     acc2.x = 0;
     acc2.y = 0;
 
-    Planet planet1(pos1.x, pos1.y, vel1.x, vel1.y, 500, 20, col1);
-    Planet planet2(pos2.x, pos2.y, vel2.x, vel2.y, 500, 30, col1);
+    Planet planet1(pos1.x, pos1.y, vel1.x, vel1.y, 50, 20, col1);
+    Planet planet2(pos2.x, pos2.y, vel2.x, vel2.y, 50, 30, col1);
 
 //    System::planetVector.push_back(planet1);
 //    System::planetVector.push_back(planet2);
@@ -81,7 +81,6 @@ void test()
 
             }
             window.display();
-
         }
     }
 
