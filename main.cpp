@@ -11,9 +11,9 @@ void test();
 int main(int argc, char *argv[])
 {
     cout << "Hello World!" << endl;
-//    Animate animate;
-//    animate.Run();
-    test();
+    Animate animate;
+    animate.Run();
+//    test();
     return 0;
 }
 
@@ -60,9 +60,10 @@ void test()
             window.clear(sf::Color::Blue);
             vector<Planet>::iterator it;
             it = p.begin();
+            sf::Vector2f temp(0, 0);
+
             for(int i = 0; i < p.size(); i++)
             {
-                sf::Vector2f temp(0, 0);
                 for(int n = 0; n < p.size(); n++)
                 {
 
