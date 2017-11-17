@@ -11,9 +11,9 @@ void test();
 int main(int argc, char *argv[])
 {
     cout << "Hello World!" << endl;
-//    Animate animate;
-//    animate.Run();
-    test();
+    Animate animate;
+    animate.Run();
+//    test();
     return 0;
 }
 

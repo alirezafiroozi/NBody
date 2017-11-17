@@ -29,6 +29,6 @@ void System::Draw(sf::RenderWindow &window)
 
 void System::Insert(Planet planet)
 {
-    Planet p(planet);
-    planetVector.push_back(p);
+//    Planet p(planet);
+    planetVector.push_back(planet);
 }

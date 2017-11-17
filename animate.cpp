@@ -84,16 +84,19 @@ void Animate::ProcessEvents()
             cout << "WC.X:" << world_coord.x << ", "
                  << "WC.Y:" << world_coord.y << endl;
 
-            s.setRadius(40);
-            s.setPosition(world_coord);
-            s.setFillColor(sf::Color::Blue);
+//            s.setRadius(40);
+//            s.setPosition(world_coord);
+//            s.setFillColor(sf::Color::Blue);
+            sf::Color col(sf::Color::Blue);
+            Planet p(mousePointS.getPosition().x, mousePoint.getPosition().y, 0, 0, 500, 50, col);
+            system.Insert(p);
 
             while(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
                 if(sf::Event::MouseButtonReleased){
                     //this will calculate the new position of the cursor
                     //will use this to calculate where the new
                     sf::Vector2i new_coords = sf::Mouse::getPosition();
-                    cout << "DEBUG::newcoords:" << new_coords.x << "," << new_coords.y << endl;
+//                    cout << "DEBUG::newcoords:" << new_coords.x << "," << new_coords.y << endl;
                 }
             }
         }
