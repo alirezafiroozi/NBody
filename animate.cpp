@@ -84,7 +84,7 @@ void Animate::ProcessEvents()
             cout << "WC.X:" << world_coord.x << ", "
                  << "WC.Y:" << world_coord.y << endl;
 
-            while(sf::Event::MouseButtonPressed){
+            while(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
                 if(sf::Event::MouseButtonReleased){
                     //this will calculate the new position of the cursor
                     //will use this to calculate where the new
