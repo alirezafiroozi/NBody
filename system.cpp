@@ -17,13 +17,12 @@ System::System()
 
 void System::Draw(sf::RenderWindow &window)
 {
-    window.clear();
     vector<Planet>::iterator it = planetVector.begin();
     int size = planetVector.size();
     for(int i = 0; i < size; i++)
     {
-        it[i].Draw(window);
         it[i].Step();
+        it[i].Draw(window);        
     }
 }
 

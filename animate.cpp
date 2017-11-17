@@ -88,7 +88,7 @@ void Animate::ProcessEvents()
 //            s.setPosition(world_coord);
 //            s.setFillColor(sf::Color::Blue);
             sf::Color col(sf::Color::Blue);
-            Planet p(mousePointS.getPosition().x, mousePoint.getPosition().y, 0, 0, 500, 50, col);
+            Planet p(mousePoint.getPosition().x, mousePoint.getPosition().y, 4, 4, 500, 50, col);
             system.Insert(p);
 
             while(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
@@ -135,7 +135,7 @@ void Animate::Draw()
         window.draw(mousePoint);
     }
 
-    window.draw(s);
+//    window.draw(s);
 }
 
 string mouse_pos_string(sf::RenderWindow& window)

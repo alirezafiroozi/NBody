@@ -20,6 +20,8 @@ Planet::Planet(float xPos, float yPos, float xVel, float yVel, float mass,
     _radius = radius;
     _col = col;
     planet.setRadius(_radius);
+    planet.setFillColor(_col);
+    planet.setPosition(sf::Vector2f(_pos.x, _pos.y));
 }
 
 void Planet::Step()
@@ -28,6 +30,7 @@ void Planet::Step()
     _pos.y += _vel.y;
     _acc.x = 0;
     _acc.y = 0;
+    planet.setPosition(sf::Vector2f(_pos.x, _pos.y));
 }
 
 void Planet::Draw(sf::RenderWindow &window)
