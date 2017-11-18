@@ -95,6 +95,7 @@ void Planet::Collision(Planet &other)
     if(d < (_radius + other._radius))
     {
         _mass += other._mass;
+        if(_mass > (other._mass * 20))
         _vel.x += other._vel.x;
         _vel.y += other._vel.y;
         other._alive = false;;
