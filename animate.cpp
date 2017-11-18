@@ -101,26 +101,26 @@ void Animate::ProcessEvents()
             }
 
             sf::Color col(sf::Color::Blue);
-            sf::Vector2f vel((line[1].position.x - line[0].position.x),
-                            (line[1].position.y - line[0].position.y));
+//            sf::Vector2f vel((line[1].position.x - line[0].position.x),
+//                            (line[1].position.y - line[0].position.y));
 
             float xvel = (line[1].position.x - line[0].position.x);
             float yvel = (line[1].position.y - line[0].position.y);
 
-             if(xvel >= 5.0f){
-                 xvel = 5.0f;
+             if(xvel >= 2.0f){
+                 xvel = 2.0f;
              }
-             if(xvel <= -5.0f){
-                 xvel = -5.0f;
+             if(xvel <= -2.0f){
+                 xvel = -2.0f;
              }
-             if(yvel >= 5.0f){
-                 yvel = 5.0f;
+             if(yvel >= 2.0f){
+                 yvel = 2.0f;
              }
-             if(yvel <= 5.0f){
-                 yvel = -5.0f;
+             if(yvel <= 2.0f){
+                 yvel = -2.0f;
              }
 
-            cout << "Debug: vel:" << vel.x << "," << vel.y << endl;
+//            cout << "Debug: vel:" << vel.x << "," << vel.y << endl;
 
             Planet p(mousePoint.getPosition().x, mousePoint.getPosition().y, xvel, yvel, 500, 50, col);
             system.Insert(p);

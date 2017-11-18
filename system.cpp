@@ -8,17 +8,17 @@ System::System()
 {
     cout << "System CTOR got called\n";
     Planet planet;
-    float xe = 409.6 /** pow(10, 6)*/;
+    float xe = 809.6 /** pow(10, 6)*/;
     float ye = 50/*pow(10, 6)*/;
     float masse = 5.97 * pow(10,3);
     sf::Color cole(sf::Color::Blue);
     Planet Earth(xe, ye, 3, 2, masse, 20, cole);
 //    float xe = 149.6 * pow(10, 6);
 //    float ye = pow(10, 6);
-    float masss = pow(10, 4);
+    float masss = pow(10, 5);
     sf::Color cols(sf::Color::Yellow);
     Planet Sun(0, 0, 0, 0, masss, 50, cols);
-    planetVector.push_back(Earth);
+//    planetVector.push_back(Earth);
     planetVector.push_back(Sun);
 
     //NEEDS TO GET COMPLETED
