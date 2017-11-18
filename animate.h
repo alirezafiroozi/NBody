@@ -19,12 +19,11 @@ private:
     sf::RenderWindow window;
     sf::CircleShape mousePoint;
     sf::View view;    
-    sf::VertexArray line;
+    sf::Vertex line[2];
     System system;
     Planet planet;
     bool mouseIn;
     bool pause;
-    sf::RectangleShape box;
 };
 
 std::string mouse_pos_string(sf::RenderWindow& window);

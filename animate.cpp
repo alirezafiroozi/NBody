@@ -15,7 +15,6 @@ Animate::Animate()
     window.setFramerateLimit(FRAME_RATE);
 
     //initialize lines
-    line = sf::VertexArray(sf::LinesStrip, 2);
     line[0].color = sf::Color::White;
     line[1].color = sf::Color::White;
 
@@ -98,18 +97,14 @@ void Animate::ProcessEvents()
             system.Insert(p);
 
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-                starting_position.x = event.mouseButton.x;
-                starting_position.y = event.mouseButton.y;
-            }    
-
-            if(sf::Event::MouseMoved && sf::Mouse::isButtonPressed(sf::Mouse::Left) )
-            {
-                current_position.x = event.mouseMove.x - starting_position.x;
-                current_position.y = event.mouseMove.y - starting_position.y;
-                box.setSize( current_position );
-                box.setPosition( starting_position.x , starting_position.y );
-                box.setFillColor( sf::Color::White );
+                line[0] = sf::Vector2f(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
+                while(sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Event::MouseMoved){
+                    line[1] = sf::Vector2f(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
+                    window.draw(line, 2, sf::Lines);
+                    window.display();
+                }
             }
+
         }
             break;
         }
