@@ -100,8 +100,10 @@ void Animate::ProcessEvents()
                 line[0] = sf::Vector2f(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
                 while(sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Event::MouseMoved){
                     line[1] = sf::Vector2f(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
-                    window.draw(line, 2, sf::Lines);
                     window.display();
+                    window.clear();
+                    Draw();
+                    window.draw(line, 2, sf::Lines);
                 }
             }
 
@@ -115,8 +117,8 @@ void Animate::Update()
 {
     if (mouseIn){
         //mousePoint red dot:
-        mousePoint.setPosition(sf::Mouse::getPosition(window).x-5,
-                               sf::Mouse::getPosition(window).y-5);
+        mousePoint.setPosition(sf::Mouse::getPosition(window).x,
+                               sf::Mouse::getPosition(window).y);
     }
 }
 
