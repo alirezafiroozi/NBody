@@ -37,7 +37,10 @@ void Planet::Step()
 
 void Planet::Draw(sf::RenderWindow &window)
 {
-    window.draw(planet);
+    float xpos = (_pos.x * SCREEN_WIDTH) / pow(10, 10);
+    float ypos = (_pos.y * SCREEN_HEIGHT) / (6 * pow(10, 9));
+    Planet p(xpos, ypos, _vel.x, _vel.y, _mass, _radius, _col);
+    window.draw(p);
 }
 
 sf::Vector2f Planet::Force(const Planet &other) const
@@ -57,7 +60,7 @@ sf::Vector2f Planet::Force(const Planet &other) const
         temp.y = 0;
         return temp;
     }
-    double force_temp = (/*G */  _mass * other._mass)/pow(d,2);
+    double force_temp = (G *  _mass * other._mass)/pow(d,2);
     //    double force_temp = Force(other);
     temp.x = force_temp * (_pos.x - other._pos.x) * -1
             / d;
