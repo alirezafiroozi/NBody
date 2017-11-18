@@ -17,6 +17,7 @@ public:
     Planet Speed();
     Planet Acceleration(sf::Vector2f force);
     void Collision(Planet& other);
+    bool isalive();
 
     /********** Do we need BIG3???? *****/
 //    Planet(Planet& other);
@@ -33,6 +34,7 @@ private:
     sf::Color _col;
     float _mass;
     int _radius;
+    bool _alive = true;
 };
 
 #endif // PLANET_H

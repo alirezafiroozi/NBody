@@ -19,6 +19,7 @@ Planet::Planet(float xPos, float yPos, float xVel, float yVel, float mass,
     _mass = mass;
     _radius = radius;
     _col = col;
+    _alive = true;
     planet.setRadius(_radius);
     planet.setFillColor(_col);
     planet.setPosition(sf::Vector2f(_pos.x, _pos.y));
@@ -89,5 +90,19 @@ Planet Planet::Acceleration(sf::Vector2f force)
 
 void Planet::Collision(Planet &other)
 {
+    double d = sqrt(pow(_pos.x - other._pos.x, 2)
+                    + pow(_pos.y - other._pos.y, 2));
+    if(d < (_radius + other._radius))
+    {
+        _mass += other._mass;
+        _vel.x += other._vel.x;
+        _vel.y += other._vel.y;
+        other._alive = false;;
+    }
+}
 
+bool Planet::isalive()
+{
+    cout << "\nDEBUG: Planet: isalive: " << _alive << endl;
+    return _alive;
 }
