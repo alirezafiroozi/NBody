@@ -30,27 +30,17 @@ void System::Draw(sf::RenderWindow &window)
         }
         for(int n = 0; n < planetVector.size(); n++)
         {
-            if(n == i)
-                break;
+            if(n != i)
+            {
+                it[i].Acceleration(it[i].Force(it[n]));
 
-//            if(it[n].isalive() == false)
-//            break;
-
-            it[i].Acceleration(it[i].Force(it[n]));
-
-            it[i].Collision(it[n]);
-
-//            it[i].Collision(it[n]);
+                it[i].Collision(it[n]);
+            }
         }
         it[i].Speed();
         it[i].Step();
         it[i].Draw(window);
-
     }
-//    for(int i = 0; i < planetVector.size(); i++)
-//    {
-//    }
-
 }
 
 void System::Insert(Planet planet)
