@@ -21,25 +21,22 @@ void System::Draw(sf::RenderWindow &window)
     int size = planetVector.size();
     for(int i = 0; i < size; i++)
     {
-//        if(it[i].isalive() == false)
+        if(!it[i].isalive())
         {
-            cout << "\nDRAW:: alive: " << it[i].isalive();
-//            planetVector.erase(it + i);
-//            it = planetVector.begin();
+//            cout << "\nDRAW:: alive: " << it[i].isalive();
+            planetVector.erase(it + i);
+            it = planetVector.begin();
         }
         for(int n = 0; n < size; n++)
         {
             if(n == i)
                 break;
-//            if(it[n].isalive() == false)
-//                break;
+            it[i].Collision(it[n]);
             it[n].Acceleration(it[n].Force(it[i]));
             it[n].Speed();
             it[n].Step();
             it[n].Draw(window);
-//            it[i].Collision(it[n]);
         }
-//        it[i].Draw(window);
 
     }
 }
