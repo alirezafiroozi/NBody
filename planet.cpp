@@ -37,13 +37,14 @@ void Planet::Step()
 
 void Planet::Draw(sf::RenderWindow &window)
 {
-    float xpos = (_pos.x * SCREEN_WIDTH) / pow(10, 10);
-    float ypos = (_pos.y * SCREEN_HEIGHT) / (6 * pow(10, 9));
-    xpos = xpos + 600;
-    ypos = ypos + 400;
-    Planet p(xpos, ypos, _vel.x, _vel.y, _mass, _radius, _col);
-
-    window.draw(p.planet);
+//    float xpos = (_pos.x * SCREEN_WIDTH) / pow(10, 5);
+//    float ypos = (_pos.y * SCREEN_HEIGHT) / (6 * pow(10, 5));
+////    xpos = xpos;
+////    ypos = ypos;
+//    Planet p(xpos, ypos, _vel.x, _vel.y, _mass, _radius, _col);
+//    cout << "DEBUG: DRAW: XPOS: " << xpos << endl;
+//    cout << "DEBUG: DRAW: YPOS: " << ypos << endl;
+    window.draw(planet);
 }
 
 sf::Vector2f Planet::Force(const Planet &other) const
@@ -63,7 +64,7 @@ sf::Vector2f Planet::Force(const Planet &other) const
         temp.y = 0;
         return temp;
     }
-    double force_temp = (G *  _mass * other._mass)/pow(d,2);
+    double force_temp = (/*G */  _mass * other._mass)/pow(d,2);
     //    double force_temp = Force(other);
     temp.x = force_temp * (_pos.x - other._pos.x) * -1
             / d;
@@ -100,11 +101,22 @@ void Planet::Collision(Planet &other)
                     + pow(_pos.y - other._pos.y, 2));
     if(d < (_radius + other._radius))
     {
-        _mass += other._mass;
-        if(_mass > (other._mass * 20))
-        _vel.x += other._vel.x;
-        _vel.y += other._vel.y;
-        other._alive = false;;
+        if(_mass > other._mass)
+        {
+            _mass += other._mass / 10;
+            _vel.x += other._vel.x / other._mass;
+            _vel.y += other._vel.y / other._mass;
+            other._alive = false;;
+        }
+        if(_mass <= other._mass)
+        {
+            other._mass += _mass / 10;
+            other._vel.x += _vel.x / _mass;
+            other._vel.y += _vel.y / _mass;
+
+            _alive = false;;
+        }
+
     }
 }
 
