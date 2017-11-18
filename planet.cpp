@@ -103,6 +103,6 @@ void Planet::Collision(Planet &other)
 
 bool Planet::isalive()
 {
-//    cout << "\nDEBUG: Planet: isalive: " << _alive << endl;
+    cout << "\nDEBUG: Planet: isalive: " << _alive << endl;
     return _alive;
 }

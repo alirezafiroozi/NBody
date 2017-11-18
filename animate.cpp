@@ -102,7 +102,7 @@ void Animate::ProcessEvents()
                 starting_position.y = event.mouseButton.y;
             }    
 
-            while(sf::Event::MouseMoved && sf::Mouse::isButtonPressed(sf::Mouse::Left) )
+            if(sf::Event::MouseMoved && sf::Mouse::isButtonPressed(sf::Mouse::Left) )
             {
                 current_position.x = event.mouseMove.x - starting_position.x;
                 current_position.y = event.mouseMove.y - starting_position.y;
@@ -139,8 +139,6 @@ void Animate::Draw()
     if(mouseIn){
         window.draw(mousePoint);
     }
-
-    window.draw( box );
 }
 
 string mouse_pos_string(sf::RenderWindow& window)
