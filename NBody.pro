@@ -9,20 +9,38 @@ SOURCES += main.cpp \
     system.cpp \
     animate.cpp
 
-#----------------SFML for MAC OS-----------------:
+##----------------SFML for MAC OS-----------------:
 
+#CONFIG += c++11
+
+
+#LIBS += -L"/usr/local/lib"
+
+#CONFIG(release, debug|release): LIBS += -lsfml-audio -lsfml-graphics -lsfml-system -lsfml-network -lsfml-window
+#CONFIG(debug, debug|release): LIBS += -lsfml-audio -lsfml-graphics -lsfml-system -lsfml-network -lsfml-window
+
+#INCLUDEPATH += "/usr/local/include"
+#DEPENDPATH += "/usr/local/include"
+
+#------------------END OF SFML FOR MAC OS-----------------------/
+
+
+#-----------------SFML for Windows--------------------:
 CONFIG += c++11
 
-
-LIBS += -L"/usr/local/lib"
+LIBS += -L"..\..\SFML-2.0/bin"
+LIBS += -L"..\..\SFML-2.0/lib"
 
 CONFIG(release, debug|release): LIBS += -lsfml-audio -lsfml-graphics -lsfml-system -lsfml-network -lsfml-window
 CONFIG(debug, debug|release): LIBS += -lsfml-audio -lsfml-graphics -lsfml-system -lsfml-network -lsfml-window
 
-INCLUDEPATH += "/usr/local/include"
-DEPENDPATH += "/usr/local/include"
 
-#------------------END OF SFML FOR MAC OS-----------------------/
+INCLUDEPATH += /usr/include/c++/{gcc_version}/
+INCLUDEPATH += "..\..\SFML-2.0\include"
+DEPENDPATH += "..\..\SFML-2.0\include"
+
+#------------------END OF SFML FOR WINDOWS-----------------------/
+
 
 HEADERS += \
     planet.h \

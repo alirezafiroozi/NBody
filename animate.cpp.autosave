@@ -139,8 +139,7 @@ void Animate::Draw()
     if(mouseIn){
         window.draw(mousePoint);
     }
-
-    window.draw( box );
+    window.draw(box);
 }
 
 string mouse_pos_string(sf::RenderWindow& window)
