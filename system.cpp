@@ -31,10 +31,10 @@ void System::Draw(sf::RenderWindow &window)
         {
             if(n == i)
                 break;
-            it[i].Collision(it[n]);
             it[n].Acceleration(it[n].Force(it[i]));
             it[n].Speed();
             it[n].Step();
+            it[i].Collision(it[n]);
             it[n].Draw(window);
         }
 
