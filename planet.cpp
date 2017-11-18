@@ -39,8 +39,11 @@ void Planet::Draw(sf::RenderWindow &window)
 {
     float xpos = (_pos.x * SCREEN_WIDTH) / pow(10, 10);
     float ypos = (_pos.y * SCREEN_HEIGHT) / (6 * pow(10, 9));
+    xpos = xpos + 600;
+    ypos = ypos + 400;
     Planet p(xpos, ypos, _vel.x, _vel.y, _mass, _radius, _col);
-    window.draw(p);
+
+    window.draw(p.planet);
 }
 
 sf::Vector2f Planet::Force(const Planet &other) const
@@ -110,3 +113,13 @@ bool Planet::isalive()
     cout << "\nDEBUG: Planet: isalive: " << _alive << endl;
     return _alive;
 }
+
+//Planet Planet::operator =(Planet& other)
+//{
+//    _vel = other._vel;
+//    _pos = other._pos;
+//    _acc = other._acc;
+//    _mass = other._mass;
+//    _radius = other._radius;
+//    return *this;
+//}

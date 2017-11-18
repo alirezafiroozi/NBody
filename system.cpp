@@ -7,7 +7,7 @@ using namespace std;
 System::System()
 {
     cout << "System CTOR got called\n";
-    Planet planet;
+    Planet planet();
 
     //NEEDS TO GET COMPLETED
 
@@ -33,7 +33,6 @@ void System::Draw(sf::RenderWindow &window)
             if(n != i)
             {
                 it[i].Acceleration(it[i].Force(it[n]));
-
                 it[i].Collision(it[n]);
             }
         }

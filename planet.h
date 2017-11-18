@@ -19,6 +19,8 @@ public:
     void Collision(Planet& other);
     bool isalive();
 
+
+
     /********** Do we need BIG3???? *****/
 //    Planet(Planet& other);
 //    Planet operator =(Planet& other);
