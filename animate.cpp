@@ -47,9 +47,6 @@ void Animate::Run()
 
 void Animate::ProcessEvents()
 {
-    sf::Vector2i starting_position;
-    starting_position = sf::Mouse::getPosition( window );
-    sf::Vector2f current_position;
     sf::Event event;
     while(window.pollEvent(event)){
         switch(event.type){
@@ -92,10 +89,6 @@ void Animate::ProcessEvents()
             cout << "WC.X:" << world_coord.x << ", "
                  << "WC.Y:" << world_coord.y << endl;
 
-            sf::Color col(sf::Color::Blue);
-            Planet p(mousePoint.getPosition().x, mousePoint.getPosition().y, 0, 0, 500, 50, col);
-            system.Insert(p);
-
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
                 line[0] = sf::Vector2f(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
                 while(sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Event::MouseMoved){
@@ -107,6 +100,14 @@ void Animate::ProcessEvents()
                 }
             }
 
+            sf::Color col(sf::Color::Blue);
+            sf::Vector2f vel((line[1].position.x - line[0].position.x),
+                            (line[1].position.y - line[0].position.y));
+
+            cout << "Debug: vel:" << vel.x << "," << vel.y << endl;
+
+            Planet p(mousePoint.getPosition().x, mousePoint.getPosition().y, (line[1].position.y - line[0].position.x),(line[1].position.y - line[0].position.y), 500, 50, col);
+            system.Insert(p);
         }
             break;
         }
