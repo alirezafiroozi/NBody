@@ -9,5 +9,6 @@ const int NUM_OF_ITEM =2;
 const int FRAME_RATE = 60;
 const double G = 6.674e-11;
 
+const int lines = 2;
 
 #endif // CONSTANTS_H

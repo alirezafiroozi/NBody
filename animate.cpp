@@ -14,6 +14,12 @@ Animate::Animate()
     planet = Planet();
     window.setFramerateLimit(FRAME_RATE);
 
+    //initialize lines
+    line = sf::VertexArray(sf::LinesStrip, 2);
+    line[0].color = sf::Color::White;
+    line[1].color = sf::Color::White;
+
+
     //creates view perspective
     view = sf::View(window.getDefaultView());
     window.setView(view);
@@ -21,7 +27,7 @@ Animate::Animate()
     //Creates mouse point
     mouseIn = true;
     mousePoint = sf::CircleShape();
-    mousePoint.setRadius(1.0);
+    mousePoint.setRadius(2.0);
     mousePoint.setFillColor(sf::Color::Blue);
 
     cout << "============Animate CTOR END!============\n";
@@ -42,6 +48,9 @@ void Animate::Run()
 
 void Animate::ProcessEvents()
 {
+    sf::Vector2i starting_position;
+    starting_position = sf::Mouse::getPosition( window );
+    sf::Vector2f current_position;
     sf::Event event;
     while(window.pollEvent(event)){
         switch(event.type){
@@ -84,27 +93,24 @@ void Animate::ProcessEvents()
             cout << "WC.X:" << world_coord.x << ", "
                  << "WC.Y:" << world_coord.y << endl;
 
-//            s.setRadius(40);
-//            s.setPosition(world_coord);
-//            s.setFillColor(sf::Color::Blue);
             sf::Color col(sf::Color::Blue);
             Planet p(mousePoint.getPosition().x, mousePoint.getPosition().y, 0, 0, 500, 50, col);
             system.Insert(p);
 
-            while(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-                if(sf::Event::MouseButtonReleased){
-                    //this will calculate the new position of the cursor
-                    //will use this to calculate where the new
-                    sf::Vector2i new_coords = sf::Mouse::getPosition();
-//                    cout << "DEBUG::newcoords:" << new_coords.x << "," << new_coords.y << endl;
-                }
+            if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+                starting_position.x = event.mouseButton.x;
+                starting_position.y = event.mouseButton.y;
+            }    
+
+            while(sf::Event::MouseMoved && sf::Mouse::isButtonPressed(sf::Mouse::Left) )
+            {
+                current_position.x = event.mouseMove.x - starting_position.x;
+                current_position.y = event.mouseMove.y - starting_position.y;
+                box.setSize( current_position );
+                box.setPosition( starting_position.x , starting_position.y );
+                box.setFillColor( sf::Color::White );
             }
         }
-
-
-
-            //then create a new particle based on size
-            //planet.new(timer);
             break;
         }
     }
@@ -112,7 +118,6 @@ void Animate::ProcessEvents()
 
 void Animate::Update()
 {
-//    _command = 0;
     if (mouseIn){
         //mousePoint red dot:
         mousePoint.setPosition(sf::Mouse::getPosition(window).x-5,
@@ -135,7 +140,7 @@ void Animate::Draw()
         window.draw(mousePoint);
     }
 
-//    window.draw(s);
+    window.draw( box );
 }
 
 string mouse_pos_string(sf::RenderWindow& window)
